@@ -12,19 +12,22 @@
     tools:context="com.thebeast.com.thebeast.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical" >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main_activity_header"
+        android:id="@+id/tv_main_activity_header"
+        android:textSize="30sp"
+        android:textIsSelectable="false"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:gravity="center_horizontal"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="This is the beast." />
-    </LinearLayout>
+    <Button
+        android:id="@+id/b_go_to_fb_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/go_to_fb_login"
+        android:layout_below="@+id/tv_main_activity_header"
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>

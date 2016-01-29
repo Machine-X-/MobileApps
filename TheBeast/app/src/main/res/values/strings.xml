@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">TheBeast</string>
     <string name="action_settings">Settings</string>
+    <string name="facebook_app_id">544407449082473</string>
+    <string name="go_to_fb_login">Login with Facebook!</string>
+    <string name="title_activity_login_to_facebook">LoginToFacebook</string>
+    <string name="user_name">Please sign in for fun!</string>
+    <string name="sign_in_with_facebook_header">Sign in with Facebook!</string>
+    <string name="main_activity_header">Welcome to the Beast!</string>
 </resources>
