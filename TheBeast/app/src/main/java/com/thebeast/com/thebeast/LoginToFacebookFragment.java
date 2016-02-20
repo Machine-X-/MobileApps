@@ -1,6 +1,8 @@
 package com.thebeast.com.thebeast;
 
 
+import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -19,7 +21,7 @@ public class LoginToFacebookFragment extends Fragment {
     private ProfileTracker profileTracker;
     private LoginButton loginButton;
     private TextView username;
-	   
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     	// Inflate the layout for this fragment
@@ -29,6 +31,7 @@ public class LoginToFacebookFragment extends Fragment {
         Profile profile = Profile.getCurrentProfile();
         if (profile != null && !profile.getFirstName().isEmpty()) {
             username.setText("Welcome " + profile.getFirstName() + " " + profile.getLastName() + "!");
+            startActivity(new Intent(getActivity(), MainActivity.class));
         }
 
         loginButton = (LoginButton) view.findViewById(R.id.login_button);
