@@ -22,4 +22,5 @@
 
     <string name="action_example">Example action</string>
     <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_tab_fragment">TabFragment</string>
 </resources>
