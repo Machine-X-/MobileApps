@@ -19,19 +19,16 @@ import android.widget.ListView;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private Toolbar mToolbar;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
-    private FragmentManager mFragmentManager;
-    private FragmentTransaction mFragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer_layout);
 
-        mToolbar = (Toolbar)findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -39,18 +36,10 @@ public class HomeActivity extends AppCompatActivity {
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
-        mFragmentManager = getSupportFragmentManager();
-        if (mFragmentManager == null) {
-            Log.d("TEST", "IS NULL");
-        }
-        else {
-            mFragmentTransaction = mFragmentManager.beginTransaction();
-            TabFragment tabFragment = new TabFragment();
-            mFragmentTransaction.add(R.id.content_frame, tabFragment);
-            mFragmentTransaction.commit();
-            Log.d("TEST", "committed");
-        }
-
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.content_frame, new TabFragment());
+        fragmentTransaction.commit();
     }
 
     @Override

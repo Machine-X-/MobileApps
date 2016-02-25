@@ -30,6 +30,7 @@ public class TabFragment extends Fragment {
         mViewPager = (ViewPager)view.findViewById(R.id.viewPager);
         mViewPager.setAdapter(new PageAdapter(getChildFragmentManager()));
 
+        mTabLayout = (TabLayout)view.findViewById(R.id.tabLayout);
         mTabLayout.setupWithViewPager(mViewPager);
         return view;
     }
