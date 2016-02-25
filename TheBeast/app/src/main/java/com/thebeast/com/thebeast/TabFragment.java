@@ -1,6 +1,7 @@
 package com.thebeast.com.thebeast;
 
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -21,6 +22,7 @@ public class TabFragment extends Fragment {
     public TabLayout mTabLayout;
     public ViewPager mViewPager;
     static final int TAB_NUM = 3;
+    static final String[] TAB_NAMES = {"TAB 1", "TAB 2", "TAB 3"};
 
     @Nullable
     @Override
@@ -42,7 +44,15 @@ public class TabFragment extends Fragment {
 
         @Override
         public Fragment getItem(int position) {
-            return new TestFragment();
+            switch (position) {
+                case 0:
+                    return new TestFragment();
+                case 1:
+                    return new TestFragment2();
+                case 2:
+                    return new TestFragment3();
+            }
+            return null;
         }
 
         @Override
@@ -52,19 +62,7 @@ public class TabFragment extends Fragment {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            String title = null;
-            switch (position) {
-                case 0:
-                    title = "Test 1";
-                    break;
-                case 1:
-                    title = "Test 2";
-                    break;
-                case 2:
-                    title = "Test 3";
-                    break;
-            }
-            return title;
+            return TAB_NAMES[position];
         }
     }
 }
