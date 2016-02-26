@@ -50,32 +50,44 @@ public class HomeActivity extends AppCompatActivity {
         setUpNavigationView(navigationView);
         navigationView.setCheckedItem(R.id.nav_first_fragment);
 
-        if (savedInstanceState == null) {
-            currentNavScreen = NavigationScreen.FIRST;
-        }
-        else {
-            currentNavScreen = (NavigationScreen)savedInstanceState.get(FRAGMENT_CLASS);
-        }
-
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        switch (currentNavScreen) {
-            case FIRST:
-                fragmentTransaction.add(R.id.content_frame, new TabFragment());
-                break;
-            case SECOND:
-                fragmentTransaction.add(R.id.content_frame, new TestFragment2());
-                break;
-            case THIRD:
-                fragmentTransaction.add(R.id.content_frame, new TestFragment3());
-                break;
-            default:
-                fragmentTransaction.add(R.id.content_frame, new TabFragment());
+        if (savedInstanceState == null) {
+            currentNavScreen = NavigationScreen.FIRST;
+            switch (currentNavScreen) {
+                case FIRST:
+                    fragmentTransaction.add(R.id.content_frame, new TabFragment());
+                    break;
+                case SECOND:
+                    fragmentTransaction.add(R.id.content_frame, new TestFragment2());
+                    break;
+                case THIRD:
+                    fragmentTransaction.add(R.id.content_frame, new TestFragment3());
+                    break;
+                default:
+                    fragmentTransaction.add(R.id.content_frame, new TabFragment());
+            }
+        }
+        else {
+            currentNavScreen = (NavigationScreen)savedInstanceState.get(FRAGMENT_CLASS);
+            assert currentNavScreen != null;
+            switch (currentNavScreen) {
+                case FIRST:
+                    fragmentTransaction.replace(R.id.content_frame, new TabFragment());
+                    break;
+                case SECOND:
+                    fragmentTransaction.replace(R.id.content_frame, new TestFragment2());
+                    break;
+                case THIRD:
+                    fragmentTransaction.replace(R.id.content_frame, new TestFragment3());
+                    break;
+                default:
+                    fragmentTransaction.replace(R.id.content_frame, new TabFragment());
+            }
         }
 
         fragmentTransaction.commit();
-
     }
 
     @Override
