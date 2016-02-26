@@ -23,6 +23,14 @@ public class HomeActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
+    static final String FRAGMENT_CLASS = "fragmentClass";
+
+    public enum NavigationScreen {
+        FIRST,
+        SECOND,
+        THIRD
+    }
+    public NavigationScreen currentNavScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +48,34 @@ public class HomeActivity extends AppCompatActivity {
 
         NavigationView navigationView = (NavigationView)findViewById(R.id.nvView);
         setUpNavigationView(navigationView);
+        navigationView.setCheckedItem(R.id.nav_first_fragment);
+
+        if (savedInstanceState == null) {
+            currentNavScreen = NavigationScreen.FIRST;
+        }
+        else {
+            currentNavScreen = (NavigationScreen)savedInstanceState.get(FRAGMENT_CLASS);
+        }
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.content_frame, new TabFragment());
+
+        switch (currentNavScreen) {
+            case FIRST:
+                fragmentTransaction.add(R.id.content_frame, new TabFragment());
+                break;
+            case SECOND:
+                fragmentTransaction.add(R.id.content_frame, new TestFragment2());
+                break;
+            case THIRD:
+                fragmentTransaction.add(R.id.content_frame, new TestFragment3());
+                break;
+            default:
+                fragmentTransaction.add(R.id.content_frame, new TabFragment());
+        }
+
         fragmentTransaction.commit();
+
     }
 
     @Override
@@ -59,9 +90,6 @@ public class HomeActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
-                break;
-            case R.id.nav_first_fragment:
-                Log.d("NAV TEST", "First item clicked");
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -85,19 +113,23 @@ public class HomeActivity extends AppCompatActivity {
 
     public void selectItem(MenuItem item) {
         Fragment fragment = null;
-        Class fragmentClass = null;
+        Class fragmentClass;
         switch (item.getItemId()) {
             case R.id.nav_first_fragment:
                 fragmentClass = TabFragment.class;
+                currentNavScreen = NavigationScreen.FIRST;
                 break;
             case R.id.nav_second_fragment:
                 fragmentClass = TestFragment2.class;
+                currentNavScreen = NavigationScreen.SECOND;
                 break;
             case R.id.nav_third_fragment:
                 fragmentClass = TestFragment3.class;
+                currentNavScreen = NavigationScreen.THIRD;
                 break;
             default:
                 fragmentClass = TabFragment.class;
+                currentNavScreen = NavigationScreen.FIRST;
         }
 
         try {
@@ -113,5 +145,11 @@ public class HomeActivity extends AppCompatActivity {
 
         item.setChecked(true);
         mDrawerLayout.closeDrawers();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putSerializable(FRAGMENT_CLASS, currentNavScreen);
+        super.onSaveInstanceState(outState);
     }
 }
