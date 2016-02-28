@@ -24,6 +24,7 @@ public class HomeActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     static final String FRAGMENT_CLASS = "fragmentClass";
+    private String fragmentTag;
 
     public enum NavigationScreen {
         FIRST,
@@ -55,19 +56,7 @@ public class HomeActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             currentNavScreen = NavigationScreen.FIRST;
-            switch (currentNavScreen) {
-                case FIRST:
-                    fragmentTransaction.add(R.id.content_frame, new TabFragment());
-                    break;
-                case SECOND:
-                    fragmentTransaction.add(R.id.content_frame, new TestFragment2());
-                    break;
-                case THIRD:
-                    fragmentTransaction.add(R.id.content_frame, new TestFragment3());
-                    break;
-                default:
-                    fragmentTransaction.add(R.id.content_frame, new TabFragment());
-            }
+            fragmentTransaction.add(R.id.content_frame, new TabFragment());
         }
         else {
             currentNavScreen = (NavigationScreen)savedInstanceState.get(FRAGMENT_CLASS);
@@ -86,7 +75,6 @@ public class HomeActivity extends AppCompatActivity {
                     fragmentTransaction.replace(R.id.content_frame, new TabFragment());
             }
         }
-
         fragmentTransaction.commit();
     }
 
