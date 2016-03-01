@@ -24,7 +24,6 @@ public class HomeActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     static final String FRAGMENT_CLASS = "fragmentClass";
-    private String fragmentTag;
 
     public enum NavigationScreen {
         FIRST,
@@ -56,7 +55,7 @@ public class HomeActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             currentNavScreen = NavigationScreen.FIRST;
-            fragmentTransaction.add(R.id.content_frame, new TabFragment());
+            fragmentTransaction.add(R.id.content_frame, new TabFragment()).addToBackStack(null);
         }
         else {
             currentNavScreen = (NavigationScreen)savedInstanceState.get(FRAGMENT_CLASS);
@@ -151,5 +150,18 @@ public class HomeActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         outState.putSerializable(FRAGMENT_CLASS, currentNavScreen);
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onBackPressed() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        if (fragmentManager.getBackStackEntryCount() > 0) {
+            fragmentManager.popBackStackImmediate();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new TabFragment())
+                    .commit();
+        }
+        else {
+            super.onBackPressed();
+        }
     }
 }
