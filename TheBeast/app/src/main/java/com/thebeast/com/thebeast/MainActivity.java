@@ -23,6 +23,7 @@ import java.security.MessageDigest;
 public class MainActivity extends AppCompatActivity implements OnClickListener {
 
     private Button goToFBLogin;
+    private Button goToMapsActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         if (actionBar != null) {
             actionBar.hide();
         }
+        goToMapsActivity = (Button) findViewById(R.id.b_go_to_maps_activity);
+        goToMapsActivity.setOnClickListener(this);
     }
 
     @Override
@@ -82,6 +85,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         switch(v.getId()) {
             case R.id.b_go_to_fb_login:
                 startActivity(new Intent(this, LoginToFacebook.class));
+                break;
+            case R.id.b_go_to_maps_activity:
+                startActivity(new Intent(this, MapsActivity.class));
                 break;
         }
     }
