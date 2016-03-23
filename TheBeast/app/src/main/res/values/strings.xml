@@ -38,4 +38,5 @@
     <string name="accept">Accept</string>
     <string name="decline">Decline</string>
     <string name="google_play_text_key">google_play_text</string>
+    <string name="title_activity_main2">Main2Activity</string>
 </resources>

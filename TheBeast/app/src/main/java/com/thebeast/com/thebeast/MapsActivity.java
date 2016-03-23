@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -40,6 +41,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         Log.d("LOCATION_SERVICE", "Showing current location");
         Location myLocation = mMap.getMyLocation();
+
         LatLng myLatLng = new LatLng(myLocation.getLatitude(),
                 myLocation.getLongitude());
 
