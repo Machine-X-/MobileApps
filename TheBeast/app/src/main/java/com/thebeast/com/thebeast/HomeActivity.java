@@ -1,5 +1,6 @@
 package com.thebeast.com.thebeast;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.design.widget.FloatingActionButton;
@@ -78,12 +79,13 @@ public class HomeActivity extends AppCompatActivity {
         }
         fragmentTransaction.commit();
 
+
+        final Intent intent = new Intent(this, CreateGameActivity.class);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                startActivity(intent);
             }
         });
     }

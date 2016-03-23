@@ -56,6 +56,15 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDP7cOiZJi8JevTgce7Co_N_jwTMnaoR7Y"/>
 
+        <activity
+            android:name=".CreateGameActivity"
+            android:label="@string/title_activity_create_game"
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.thebeast.com.thebeast.HomeActivity"/>
+        </activity>
     </application>
 
 </manifest>
