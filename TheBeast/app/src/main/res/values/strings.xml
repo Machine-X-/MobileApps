@@ -40,4 +40,18 @@
     <string name="google_play_text_key">google_play_text</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_create_game">CreateGameActivity</string>
+
+    <string name="sport_spinner_title">Sport:</string>
+    <string-array name="sport_entries">
+        <item>Soccer</item>
+        <item>Basketball</item>
+        <item>Football</item>
+        <item>Volleyball</item>
+    </string-array>
+    <string name="place_picker_title">Location:</string>
+    <string name="additional_info_title">Additional location info:</string>
+    <string name="time_picker_title">Time:</string>
+    <string name="button_text">EDIT</string>
+    <string name="team_size_picker_title">Team size:</string>
+
 </resources>
