@@ -54,14 +54,22 @@ public class CreateGameActivity extends AppCompatActivity {
     }
 
     private static String formatTime(int hour, int minute) {
+        String period = " AM";
         String minString = String.valueOf(minute);
-        if (hour - 12 > 0) {
+        if (hour == 12) {
+            period = " PM";
+        }
+        else if (hour == 24) {
             hour = hour - 12;
+        }
+        else if (hour - 12 > 0) {
+            hour = hour - 12;
+            period = " PM";
         }
         if (minute < 10) {
             minString = "0" + minString;
         }
-        return hour + ":" + minString;
+        return hour + ":" + minString + period;
     }
 
 }
