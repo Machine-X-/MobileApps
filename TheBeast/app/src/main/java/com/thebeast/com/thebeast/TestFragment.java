@@ -9,6 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+import com.firebase.ui.FirebaseRecyclerAdapter;
+
+import java.util.ArrayList;
+
 /**
  * Created by loganpatino on 2/24/16.
  */
@@ -16,25 +24,34 @@ public class TestFragment extends Fragment {
 
     protected RecyclerView mRecyclerView;
     protected RecyclerView.LayoutManager mLayoutManager;
-    protected RecyclerView.Adapter mAdapter;
+    FirebaseRecyclerAdapter<Game, RecyclerViewHolder> mAdapter;
+    Firebase mRef;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.test_layout, container, false);
-
-        String[] gameList = {"Game 1", "Game 2", "Game 3", "Game 4"
-                , "Game 5", "Game 6", "Game 7", "Game 8", "Game 9"
-                , "Game 10", "Game 11", "Game 12"};
-
         mRecyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
+        return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        mRef = new Firebase("https://sizzling-torch-801.firebaseio.com/games");
 
         mLayoutManager = new LinearLayoutManager(getActivity());
+        mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new RecyclerAdapter(gameList);
-        mRecyclerView.setAdapter(mAdapter);
+        mAdapter = new FirebaseRecyclerAdapter<Game, RecyclerViewHolder>(Game.class, R.layout.list_item_view, RecyclerViewHolder.class, mRef) {
+            @Override
+            public void populateViewHolder(RecyclerViewHolder recyclerViewHolder, Game game, int i) {
+                recyclerViewHolder.setItemText(game.getSport());
+            }
+        };
 
-        return view;
+        mRecyclerView.setAdapter(mAdapter);
     }
 }

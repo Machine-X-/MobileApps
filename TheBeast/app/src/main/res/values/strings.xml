@@ -48,10 +48,11 @@
         <item>Football</item>
         <item>Volleyball</item>
     </string-array>
-    <string name="place_picker_title">Location:</string>
-    <string name="additional_info_title">Additional location info:</string>
-    <string name="time_picker_title">Time:</string>
+    <string name="place_picker_title">Location</string>
+    <string name="additional_info_title">Additional location info</string>
+    <string name="time_picker_title">Time</string>
     <string name="button_text">EDIT</string>
-    <string name="team_size_picker_title">Team size:</string>
+    <string name="team_size_picker_title">Team size</string>
+    <string name="create_button_text">CREATE</string>
 
 </resources>

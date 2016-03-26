@@ -15,4 +15,8 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         itemText = (TextView)itemView.findViewById(R.id.item_text);
     }
+
+    public void setItemText(String text) {
+        itemText.setText(text);
+    }
 }
