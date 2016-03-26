@@ -55,4 +55,10 @@
     <string name="team_size_picker_title">Team size</string>
     <string name="create_button_text">CREATE</string>
 
+    <string name="info_label">Additional Info: </string>
+    <string name="location_label">Location: </string>
+    <string name="sport_label">Sport: </string>
+    <string name="team_size_label">Team Size: </string>
+    <string name="time_label">Time: </string>
+
 </resources>
