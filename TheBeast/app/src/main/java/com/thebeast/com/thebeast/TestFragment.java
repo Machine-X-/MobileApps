@@ -1,10 +1,13 @@
 package com.thebeast.com.thebeast;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,8 +50,21 @@ public class TestFragment extends Fragment {
 
         mAdapter = new FirebaseRecyclerAdapter<Game, RecyclerViewHolder>(Game.class, R.layout.list_item_view, RecyclerViewHolder.class, mRef) {
             @Override
-            public void populateViewHolder(RecyclerViewHolder recyclerViewHolder, Game game, int i) {
+            public void populateViewHolder(RecyclerViewHolder recyclerViewHolder, final Game game, int i) {
                 recyclerViewHolder.setItemText(game.getSport());
+                recyclerViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getActivity(), GameDetailActivity.class);
+                        intent.putExtra("sport", game.getSport());
+                        intent.putExtra("location", game.getLocation());
+                        intent.putExtra("additional_info", game.getAdditionalInfo());
+                        intent.putExtra("time", game.getTime());
+                        intent.putExtra("team_size", game.getTeamSize());
+                        startActivity(intent);
+                        //Log.d("CLICK_TEST", game.getSport());
+                    }
+                });
             }
         };
 
