@@ -60,13 +60,18 @@
         <activity
             android:name=".CreateGameActivity"
             android:label="@string/title_activity_create_game"
-            android:parentActivityName=".HomeActivity"
-            android:theme="@style/AppTheme">
+            android:parentActivityName=".HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.thebeast.com.thebeast.HomeActivity"/>
         </activity>
-        <activity android:name=".GameDetailActivity">
+        <activity
+            android:name=".GameDetailActivity"
+            android:label="@string/title_activity_game_detail"
+            android:parentActivityName=".HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomeActivity"/>
         </activity>
     </application>
 

@@ -39,7 +39,8 @@
     <string name="decline">Decline</string>
     <string name="google_play_text_key">google_play_text</string>
     <string name="title_activity_main2">Main2Activity</string>
-    <string name="title_activity_create_game">CreateGameActivity</string>
+    <string name="title_activity_create_game">Create Game</string>
+    <string name="title_activity_game_detail">Game Details</string>
 
     <string name="sport_spinner_title">Sport:</string>
     <string-array name="sport_entries">

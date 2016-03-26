@@ -3,6 +3,7 @@ package com.thebeast.com.thebeast;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
 public class GameDetailActivity extends AppCompatActivity {
@@ -11,6 +12,13 @@ public class GameDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_detail);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         Intent intent = this.getIntent();
         String sport = intent.getStringExtra("sport");
@@ -25,10 +33,10 @@ public class GameDetailActivity extends AppCompatActivity {
         TextView timeTextView = (TextView)findViewById(R.id.timeTextView);
         TextView sizeTextView = (TextView)findViewById(R.id.sizeTextView);
 
-        sportTextView.setText(sport);
-        locationTextView.setText(location);
-        infoTextView.setText(additionalInfo);
-        timeTextView.setText(String.valueOf(time));
-        sizeTextView.setText(String.valueOf(teamSize));
+        sportTextView.append(sport);
+        locationTextView.append(location);
+        infoTextView.append(additionalInfo);
+        timeTextView.append(String.valueOf(time));
+        sizeTextView.append(String.valueOf(teamSize));
     }
 }
