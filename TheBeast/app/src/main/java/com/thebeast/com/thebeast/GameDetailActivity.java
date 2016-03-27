@@ -24,7 +24,8 @@ public class GameDetailActivity extends AppCompatActivity {
         String sport = intent.getStringExtra("sport");
         String location = intent.getStringExtra("location");
         String additionalInfo = intent.getStringExtra("additional_info");
-        int time = intent.getIntExtra("time", 0);
+        int timeInMins = intent.getIntExtra("time", 0);
+        String time = Utility.getTime(timeInMins);
         int teamSize = intent.getIntExtra("team_size", 0);
 
         TextView sportTextView = (TextView)findViewById(R.id.sportTextView);
@@ -36,7 +37,7 @@ public class GameDetailActivity extends AppCompatActivity {
         sportTextView.append(sport);
         locationTextView.append(location);
         infoTextView.append(additionalInfo);
-        timeTextView.append(String.valueOf(time));
+        timeTextView.append(time);
         sizeTextView.append(String.valueOf(teamSize));
     }
 }

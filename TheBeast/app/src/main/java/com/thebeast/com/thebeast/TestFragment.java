@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.firebase.client.Query;
 import com.firebase.client.ValueEventListener;
 import com.firebase.ui.FirebaseRecyclerAdapter;
 
@@ -43,6 +44,7 @@ public class TestFragment extends Fragment {
         super.onStart();
 
         mRef = new Firebase("https://sizzling-torch-801.firebaseio.com/games");
+        //Query mRefQuery = mRef.orderByChild("sport").equalTo("Soccer");
 
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setHasFixedSize(true);
@@ -62,7 +64,6 @@ public class TestFragment extends Fragment {
                         intent.putExtra("time", game.getTime());
                         intent.putExtra("team_size", game.getTeamSize());
                         startActivity(intent);
-                        //Log.d("CLICK_TEST", game.getSport());
                     }
                 });
             }
