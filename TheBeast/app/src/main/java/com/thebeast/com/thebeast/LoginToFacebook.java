@@ -68,4 +68,34 @@ public class LoginToFacebook extends AppCompatActivity {
          super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d("SHTUFF", "LIFECYCLE UPDATE :: App has reached LoginToFacebook.onStart();");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d("SHTUFF", "LIFECYCLE UPDATE :: App has reached LoginToFacebook.onPause();");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("SHTUFF", "LIFECYCLE UPDATE :: App has reached LoginToFacebook.onResume();");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d("SHTUFF", "LIFECYCLE UPDATE :: App has reached LoginToFacebook.onStop();");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d("SHTUFF", "LIFECYCLE UPDATE :: App has reached LoginToFacebook.onDestroy();");
+    }
 }

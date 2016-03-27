@@ -20,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.firebase.client.Firebase;
@@ -178,5 +179,43 @@ public class HomeActivity extends AppCompatActivity {
         else {
             super.onBackPressed();
         }
+    }
+
+//    public void onClick(View v) {
+//        switch(v.getId()) {
+//            case R.id.b_go_to_fb_login:
+//                startActivity(new Intent(this, LoginToFacebook.class));
+//                break;
+//        }
+//    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d("SHTUFF", "LIFECYCLE UPDATE :: App has reached HomeActivity.onPause();");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("SHTUFF", "LIFECYCLE UPDATE :: App has reached HomeActivity.onResume();");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d("SHTUFF", "LIFECYCLE UPDATE :: App has reached HomeActivity.onStop();");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d("SHTUFF", "LIFECYCLE UPDATE :: App has reached HomeActivity.onStart();");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d("SHTUFF", "LIFECYCLE UPDATE :: App has reached HomeActivity.onDestroy();");
     }
 }

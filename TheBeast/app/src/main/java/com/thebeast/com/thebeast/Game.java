@@ -1,9 +1,11 @@
 package com.thebeast.com.thebeast;
 
+import java.io.Serializable;
+
 /**
  * Created by loganpatino on 3/25/16.
  */
-public class Game {
+public class Game implements Serializable {
 
     private String additionalInfo;
     private String location;
