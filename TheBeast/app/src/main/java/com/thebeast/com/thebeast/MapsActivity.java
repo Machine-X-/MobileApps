@@ -94,8 +94,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         CameraPosition myPosition = new CameraPosition.Builder()
                 .target(myLatLng).zoom(15).tilt(15).build();
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(myPosition));
-//        mMap.addMarker(new MarkerOptions().position(myLatLng).title("game2")
-//                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
