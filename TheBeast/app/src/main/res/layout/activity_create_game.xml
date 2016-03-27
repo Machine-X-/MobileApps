@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:context="com.thebeast.com.thebeast.CreateGameActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -62,15 +61,8 @@
                     android:layout_marginTop="10dp"/>
             </LinearLayout>
 
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
-                <!--android:text="@string/place_picker_title"-->
-                <!--android:id="@+id/textView2"-->
-                <!--android:layout_weight=".2"/>-->
-
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/location_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight=".2">
@@ -80,17 +72,8 @@
                     android:inputType="textMultiLine"
                     android:ems="10"
                     android:id="@+id/location"
-                    android:hint="Address of Location"/>
+                    android:hint="@string/place_picker_title"/>
             </android.support.design.widget.TextInputLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Invalid Address, please try another one."
-                android:textColor="#ff0000"
-                android:id="@+id/error_text"
-                android:layout_weight=".2"/>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"

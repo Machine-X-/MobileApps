@@ -63,6 +63,7 @@
         <activity
             android:name=".CreateGameActivity"
             android:label="@string/title_activity_create_game"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

@@ -1,30 +1,25 @@
 package com.thebeast.com.thebeast;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
-import com.firebase.client.ValueEventListener;
 import com.firebase.ui.FirebaseRecyclerAdapter;
 
-import java.util.ArrayList;
-
 /**
- * Created by loganpatino on 2/24/16.
+ * A simple {@link Fragment} subclass.
  */
-public class TestFragment extends Fragment {
+public class BasketballListFragment extends Fragment {
 
     protected RecyclerView mRecyclerView;
     protected RecyclerView.LayoutManager mLayoutManager;
@@ -34,7 +29,7 @@ public class TestFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.test_layout, container, false);
+        View view = inflater.inflate(R.layout.list_layout, container, false);
         mRecyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
         return view;
     }
@@ -44,13 +39,13 @@ public class TestFragment extends Fragment {
         super.onStart();
 
         mRef = new Firebase("https://sizzling-torch-801.firebaseio.com/games");
-        //Query mRefQuery = mRef.orderByChild("sport").equalTo("Soccer");
+        Query mRefQuery = mRef.orderByChild("sport").equalTo("Basketball");
 
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new FirebaseRecyclerAdapter<Game, RecyclerViewHolder>(Game.class, R.layout.list_item_view, RecyclerViewHolder.class, mRef) {
+        mAdapter = new FirebaseRecyclerAdapter<Game, RecyclerViewHolder>(Game.class, R.layout.list_item_view, RecyclerViewHolder.class, mRefQuery) {
             @Override
             public void populateViewHolder(RecyclerViewHolder recyclerViewHolder, final Game game, int i) {
                 recyclerViewHolder.setItemText(game.getSport());
@@ -71,4 +66,5 @@ public class TestFragment extends Fragment {
 
         mRecyclerView.setAdapter(mAdapter);
     }
+
 }

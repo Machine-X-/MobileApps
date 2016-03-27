@@ -2,10 +2,8 @@ package com.thebeast.com.thebeast;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -15,15 +13,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
-
-import com.firebase.client.Firebase;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -71,7 +63,7 @@ public class HomeActivity extends AppCompatActivity {
                     fragmentTransaction.replace(R.id.content_frame, new TabFragment());
                     break;
                 case SECOND:
-                    fragmentTransaction.replace(R.id.content_frame, new TestFragment2());
+                    fragmentTransaction.replace(R.id.content_frame, new SoccerListFragment());
                     break;
                 case THIRD:
                     fragmentTransaction.replace(R.id.content_frame, new TestFragment3());
@@ -135,7 +127,7 @@ public class HomeActivity extends AppCompatActivity {
                 currentNavScreen = NavigationScreen.FIRST;
                 break;
             case R.id.nav_second_fragment:
-                fragmentClass = TestFragment2.class;
+                fragmentClass = SoccerListFragment.class;
                 currentNavScreen = NavigationScreen.SECOND;
                 break;
             case R.id.nav_third_fragment:

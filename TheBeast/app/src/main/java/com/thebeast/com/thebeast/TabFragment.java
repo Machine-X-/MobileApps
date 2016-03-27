@@ -1,18 +1,13 @@
 package com.thebeast.com.thebeast;
 
 
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,8 +16,8 @@ public class TabFragment extends Fragment {
 
     public TabLayout mTabLayout;
     public ViewPager mViewPager;
-    static final int TAB_NUM = 3;
-    static final String[] TAB_NAMES = {"TAB 1", "TAB 2", "TAB 3"};
+    static final int TAB_NUM = 5;
+    static final String[] TAB_NAMES = {"ALL SPORTS", "BASKETBALL", "FOOTBALL", "SOCCER", "VOLLEYBALL"};
 
     @Nullable
     @Override
@@ -46,11 +41,15 @@ public class TabFragment extends Fragment {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return new TestFragment();
+                    return new AllSportsListFragment();
                 case 1:
-                    return new TestFragment2();
+                    return new BasketballListFragment();
                 case 2:
-                    return new TestFragment3();
+                    return new FootballListFragment();
+                case 3:
+                    return new SoccerListFragment();
+                case 4:
+                    return new VolleyballListFragment();
             }
             return null;
         }

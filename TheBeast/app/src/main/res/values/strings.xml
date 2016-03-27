@@ -49,7 +49,7 @@
         <item>Football</item>
         <item>Volleyball</item>
     </string-array>
-    <string name="place_picker_title">Location</string>
+    <string name="place_picker_title">Address of location</string>
     <string name="additional_info_title">Additional location info</string>
     <string name="time_picker_title">Time</string>
     <string name="button_text">EDIT</string>
