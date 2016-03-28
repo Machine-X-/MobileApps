@@ -5,15 +5,21 @@ package com.thebeast.com.thebeast;
  */
 public class Profile {
 
+    private String name;
     private int wins;
     private int losses;
     private int pointsScored;
 
-    public Profile(int wins, int losses, int pointsScored) {
+    public Profile() { }
+
+    public Profile(String name, int wins, int losses, int pointsScored) {
+        this.name = name;
         this.wins = wins;
         this.losses = losses;
         this.pointsScored = pointsScored;
     }
+
+    public String getName() { return name; }
 
     public int getWins() {
         return wins;
