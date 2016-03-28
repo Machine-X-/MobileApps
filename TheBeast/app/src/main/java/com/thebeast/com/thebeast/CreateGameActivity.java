@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -32,10 +33,14 @@ import java.util.List;
 
 public class CreateGameActivity extends AppCompatActivity {
 
+    private LinearLayout mRoot;
+    private Spinner mSportSpinner;
     static TextView timeText;
     private EditText mLocation;
     private TextInputLayout mLocationLayout;
+    private EditText mInfoText;
     private static int timeInMins;
+    private EditText mTeamSizeNum;
     Firebase mRef;
     private Geocoder mGeocoder;
 
@@ -52,9 +57,10 @@ public class CreateGameActivity extends AppCompatActivity {
 
         mRef = new Firebase("https://sizzling-torch-801.firebaseio.com/games");
 
-        final EditText infoText = (EditText)findViewById(R.id.additional_info);
-        final EditText teamSizeNum = (EditText)findViewById(R.id.team_size);
-        final Spinner sportSpinner = (Spinner)findViewById(R.id.sport_spinner);
+        mRoot = (LinearLayout)findViewById(R.id.root);
+        mInfoText = (EditText)findViewById(R.id.additional_info);
+        mTeamSizeNum = (EditText)findViewById(R.id.team_size);
+        mSportSpinner = (Spinner)findViewById(R.id.sport_spinner);
         timeText =(TextView)findViewById(R.id.time_text);
         mLocationLayout = (TextInputLayout)findViewById(R.id.location_layout);
         mLocation = (EditText) findViewById(R.id.location);
@@ -64,7 +70,7 @@ public class CreateGameActivity extends AppCompatActivity {
                 R.array.sport_entries,
                 android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sportSpinner.setAdapter(adapter);
+        mSportSpinner.setAdapter(adapter);
 
         final Calendar c = Calendar.getInstance();
         int hour = c.get(Calendar.HOUR_OF_DAY);
@@ -78,33 +84,44 @@ public class CreateGameActivity extends AppCompatActivity {
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String sport = sportSpinner.getSelectedItem().toString();
-                String location = mLocation.getText().toString();
-                String additionalInfo = infoText.getText().toString();
-                int teamSize = Integer.valueOf(teamSizeNum.getText().toString());
 
-                Game newGame = new Game(additionalInfo, location, sport, teamSize, timeInMins);
+                if (isFormFilled()) {
+                    String sport = mSportSpinner.getSelectedItem().toString();
+                    String location = mLocation.getText().toString();
+                    String additionalInfo = mInfoText.getText().toString();
+                    int teamSize = Integer.valueOf(mTeamSizeNum.getText().toString());
 
-                try {
-                    // using bounding box to keep searches around campus
-                    List<Address> returnedAddresses = mGeocoder.getFromLocationName
-                            (mLocation.getText().toString(),
-                                    5,
-                                    39.983419,
-                                    -83.056517,
-                                    40.024813,
-                                    -82.995640);
-                    if (returnedAddresses != null && returnedAddresses.size() > 0) {
-                        mRef.push().setValue(newGame);
-                        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                        startActivity(intent);
-                    } else {
-                        Log.e("SHTUFF", "INVALID ADDRESS ENTERED");
-                        mLocationLayout.setError("Invalid address");
+                    Game newGame = new Game(additionalInfo, location, sport, teamSize, timeInMins);
+
+                    try {
+                        // using bounding box to keep searches around campus
+                        List<Address> returnedAddresses = mGeocoder.getFromLocationName
+                                (mLocation.getText().toString(),
+                                        5,
+                                        39.983419,
+                                        -83.056517,
+                                        40.024813,
+                                        -82.995640);
+                        if (returnedAddresses != null && returnedAddresses.size() > 0) {
+                            mRef.push().setValue(newGame);
+                            Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Log.e("SHTUFF", "INVALID ADDRESS ENTERED");
+                            mLocationLayout.setError("Invalid address");
+                        }
+                    } catch (IOException e) {
+                        Log.e("SHTUFF", "ERROR OCCURRED WHILE SEARCHING FOR ADDRESS :: ERROR MESSAGE = " + e.getMessage());
                     }
-                } catch (IOException e) {
-                    Log.e("SHTUFF", "ERROR OCCURRED WHILE SEARCHING FOR ADDRESS :: ERROR MESSAGE = " + e.getMessage());
                 }
+                else {
+                    Snackbar snackbar = Snackbar.make(mRoot,
+                            "Please fill out all required fields",
+                            Snackbar.LENGTH_SHORT);
+                    snackbar.show();
+                }
+
+
             }
         });
     }
@@ -118,6 +135,14 @@ public class CreateGameActivity extends AppCompatActivity {
         timeInMins = Utility.getMins(hour, minute);
         String newTime = Utility.getTime(hour, minute);
         timeText.setText(newTime);
+    }
+
+    private boolean isFormFilled() {
+        boolean test = true;
+        if (mLocation.getText().length() == 0 || mTeamSizeNum.getText().length() == 0) {
+            test = false;
+        }
+        return test;
     }
 
 }

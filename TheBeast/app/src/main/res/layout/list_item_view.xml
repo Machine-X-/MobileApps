@@ -12,7 +12,8 @@
         android:id="@+id/sportIcon"
         android:contentDescription="sport icon"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        />
 
     <LinearLayout
         android:orientation="vertical"

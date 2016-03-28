@@ -42,15 +42,15 @@
     <string name="title_activity_create_game">Create Game</string>
     <string name="title_activity_game_detail">Game Details</string>
 
-    <string name="sport_spinner_title">Sport:</string>
+    <string name="sport_spinner_title">Sport</string>
     <string-array name="sport_entries">
-        <item>Soccer</item>
         <item>Basketball</item>
         <item>Football</item>
+        <item>Soccer</item>
         <item>Volleyball</item>
     </string-array>
     <string name="place_picker_title">Address of location</string>
-    <string name="additional_info_title">Additional location info</string>
+    <string name="additional_info_title">Additional location info (optional)</string>
     <string name="time_picker_title">Time</string>
     <string name="button_text">EDIT</string>
     <string name="team_size_picker_title">Team size</string>
