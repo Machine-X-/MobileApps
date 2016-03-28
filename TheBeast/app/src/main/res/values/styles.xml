@@ -35,5 +35,15 @@
         <item name="android:layout_height">1dp</item>
         <item name="android:background">?android:attr/listDivider</item>
     </style>
+    
+    <style name="PrimaryText">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/blackPrimaryText</item>
+    </style>
+
+    <style name="SecondaryText">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/blackSecondaryText</item>
+    </style>
 
 </resources>

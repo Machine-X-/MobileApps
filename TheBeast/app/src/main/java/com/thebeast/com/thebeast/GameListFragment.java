@@ -80,7 +80,12 @@ public class GameListFragment extends Fragment {
         mAdapter = new FirebaseRecyclerAdapter<Game, RecyclerViewHolder>(Game.class, R.layout.list_item_view, RecyclerViewHolder.class, mRefQuery) {
             @Override
             public void populateViewHolder(RecyclerViewHolder recyclerViewHolder, final Game game, int i) {
-                recyclerViewHolder.setItemText(game.getSport());
+
+                recyclerViewHolder.setSportIcon(game.getSport());
+                recyclerViewHolder.setLocationText(game.getLocation());
+                recyclerViewHolder.setTimeText(game.getTime());
+                recyclerViewHolder.setTeamSizeText(game.getTeamSize());
+
                 recyclerViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
