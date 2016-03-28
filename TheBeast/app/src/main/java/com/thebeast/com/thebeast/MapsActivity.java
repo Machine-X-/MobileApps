@@ -73,11 +73,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     Game game = postSnapshot.getValue(Game.class);
                     try {
                         List<Address> address = mGeocoder.getFromLocationName(game.getLocation(), 5);
-                        Address location = address.get(0);
-                        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                        if (address != null && address.size() > 0) {
+                            Address location = address.get(0);
+                            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
 
-                        mMap.addMarker(new MarkerOptions().position(latLng).title(postSnapshot.getKey())
-                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+                            mMap.addMarker(new MarkerOptions().position(latLng).title(postSnapshot.getKey())
+                                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+                        }
                     } catch (IOException e) {
                         Log.e("SHTUFF", "ERROR OCCURRED WHILE SEARCHING FOR ADDRESS :: ERROR MESSAGE = " + e.getMessage());
                     }
@@ -90,7 +92,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
+        mMap.setMyLocationEnabled(true);
+        Location myLocation = mMap.getMyLocation();
         LatLng myLatLng = new LatLng(40.002606, -83.015257);
+        if (myLocation != null) {
+            myLatLng = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
+        }
         CameraPosition myPosition = new CameraPosition.Builder()
                 .target(myLatLng).zoom(15).tilt(15).build();
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(myPosition));

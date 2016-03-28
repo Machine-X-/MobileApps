@@ -128,11 +128,11 @@ public class HomeActivity extends AppCompatActivity {
                 break;
             case R.id.nav_second_fragment:
                 fragmentClass = TabFragment.class;
-                currentNavScreen = NavigationScreen.SECOND;
+                startActivity(new Intent(this, LoginToFacebook.class));
                 break;
             case R.id.nav_third_fragment:
-                fragmentClass = TestFragment3.class;
-                currentNavScreen = NavigationScreen.THIRD;
+                fragmentClass = TabFragment.class;
+                startActivity(new Intent(this, MapsActivity.class));
                 break;
             default:
                 fragmentClass = TabFragment.class;
@@ -172,14 +172,6 @@ public class HomeActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
-
-//    public void onClick(View v) {
-//        switch(v.getId()) {
-//            case R.id.b_go_to_fb_login:
-//                startActivity(new Intent(this, LoginToFacebook.class));
-//                break;
-//        }
-//    }
 
     @Override
     public void onPause() {
