@@ -8,9 +8,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TabFragment extends Fragment {
 
@@ -25,33 +29,45 @@ public class TabFragment extends Fragment {
         View view = inflater.inflate(R.layout.tab_layout, container, false);
 
         mViewPager = (ViewPager)view.findViewById(R.id.viewPager);
-        mViewPager.setAdapter(new PageAdapter(getChildFragmentManager()));
+        setupViewPager(mViewPager);
 
         mTabLayout = (TabLayout)view.findViewById(R.id.tabLayout);
         mTabLayout.setupWithViewPager(mViewPager);
         return view;
     }
 
-    public static class PageAdapter extends FragmentPagerAdapter {
+    private void setupViewPager(ViewPager viewPager) {
+        PageAdapter adapter = new PageAdapter(getChildFragmentManager());
+
+        Fragment allFragment = GameListFragment.newInstance(Utility.ListFilter.ALL);
+        adapter.addFragment(allFragment);
+
+        Fragment basketballFragment = GameListFragment.newInstance(Utility.ListFilter.BASKETBALL);
+        adapter.addFragment(basketballFragment);
+
+        Fragment footballFragment = GameListFragment.newInstance(Utility.ListFilter.FOOTBALL);
+        adapter.addFragment(footballFragment);
+
+        Fragment soccerFragment = GameListFragment.newInstance(Utility.ListFilter.SOCCER);
+        adapter.addFragment(soccerFragment);
+
+        Fragment volleyballFragment = GameListFragment.newInstance(Utility.ListFilter.VOLLEYBALL);
+        adapter.addFragment(volleyballFragment);
+
+        viewPager.setAdapter(adapter);
+    }
+
+    public class PageAdapter extends FragmentPagerAdapter {
+
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+
         public PageAdapter(FragmentManager fm) {
             super(fm);
         }
 
         @Override
         public Fragment getItem(int position) {
-            switch (position) {
-                case 0:
-                    return new AllSportsListFragment();
-                case 1:
-                    return new BasketballListFragment();
-                case 2:
-                    return new FootballListFragment();
-                case 3:
-                    return new SoccerListFragment();
-                case 4:
-                    return new VolleyballListFragment();
-            }
-            return null;
+            return mFragmentList.get(position);
         }
 
         @Override
@@ -62,6 +78,10 @@ public class TabFragment extends Fragment {
         @Override
         public CharSequence getPageTitle(int position) {
             return TAB_NAMES[position];
+        }
+
+        public void addFragment(Fragment fragment) {
+            mFragmentList.add(fragment);
         }
     }
 }

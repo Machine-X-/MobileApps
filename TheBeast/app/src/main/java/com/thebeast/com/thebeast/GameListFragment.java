@@ -1,30 +1,44 @@
 package com.thebeast.com.thebeast;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.firebase.client.Firebase;
 import com.firebase.client.Query;
 import com.firebase.ui.FirebaseRecyclerAdapter;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class BasketballListFragment extends Fragment {
+public class GameListFragment extends Fragment {
 
     protected RecyclerView mRecyclerView;
     protected RecyclerView.LayoutManager mLayoutManager;
     FirebaseRecyclerAdapter<Game, RecyclerViewHolder> mAdapter;
     Firebase mRef;
+    Utility.ListFilter filter;
+
+    public static GameListFragment newInstance(Utility.ListFilter filter) {
+        GameListFragment fragment = new GameListFragment();
+
+        Bundle args = new Bundle();
+        args.putSerializable("filter", filter);
+        fragment.setArguments(args);
+
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle bundle = getArguments();
+        filter = (Utility.ListFilter)bundle.getSerializable("filter");
+    }
 
     @Nullable
     @Override
@@ -39,10 +53,28 @@ public class BasketballListFragment extends Fragment {
         super.onStart();
 
         mRef = new Firebase("https://sizzling-torch-801.firebaseio.com/games");
-        Query mRefQuery = mRef.orderByChild("sport").equalTo("Basketball");
+        Query mRefQuery = mRef;
+
+        switch (filter) {
+            case ALL:
+                break;
+            case BASKETBALL:
+                mRefQuery = mRef.orderByChild("sport").equalTo("Basketball");
+                break;
+            case FOOTBALL:
+                mRefQuery = mRef.orderByChild("sport").equalTo("Football");
+                break;
+            case SOCCER:
+                mRefQuery = mRef.orderByChild("sport").equalTo("Soccer");
+                break;
+            case VOLLEYBALL:
+                mRefQuery = mRef.orderByChild("sport").equalTo("Volleyball");
+                break;
+            default:
+                mRefQuery = mRef;
+        }
 
         mLayoutManager = new LinearLayoutManager(getActivity());
-        mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         mAdapter = new FirebaseRecyclerAdapter<Game, RecyclerViewHolder>(Game.class, R.layout.list_item_view, RecyclerViewHolder.class, mRefQuery) {
@@ -66,5 +98,4 @@ public class BasketballListFragment extends Fragment {
 
         mRecyclerView.setAdapter(mAdapter);
     }
-
 }

@@ -63,7 +63,7 @@ public class HomeActivity extends AppCompatActivity {
                     fragmentTransaction.replace(R.id.content_frame, new TabFragment());
                     break;
                 case SECOND:
-                    fragmentTransaction.replace(R.id.content_frame, new SoccerListFragment());
+                    fragmentTransaction.replace(R.id.content_frame, new TabFragment());
                     break;
                 case THIRD:
                     fragmentTransaction.replace(R.id.content_frame, new TestFragment3());
@@ -127,7 +127,7 @@ public class HomeActivity extends AppCompatActivity {
                 currentNavScreen = NavigationScreen.FIRST;
                 break;
             case R.id.nav_second_fragment:
-                fragmentClass = SoccerListFragment.class;
+                fragmentClass = TabFragment.class;
                 currentNavScreen = NavigationScreen.SECOND;
                 break;
             case R.id.nav_third_fragment:

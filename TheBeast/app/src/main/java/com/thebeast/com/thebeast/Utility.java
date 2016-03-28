@@ -5,6 +5,14 @@ package com.thebeast.com.thebeast;
  */
 public class Utility {
 
+    public enum ListFilter {
+        ALL,
+        BASKETBALL,
+        FOOTBALL,
+        SOCCER,
+        VOLLEYBALL
+    }
+
     public static String getTime(int hour, int minute) {
         String period = " AM";
         String minString = String.valueOf(minute);
