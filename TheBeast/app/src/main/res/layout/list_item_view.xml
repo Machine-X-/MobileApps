@@ -10,9 +10,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/sportIcon"
-        android:paddingLeft="16dp"
-        android:paddingTop="16dp"
-        android:contentDescription="sport icon"/>
+        android:contentDescription="sport icon"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"/>
 
     <LinearLayout
         android:orientation="vertical"
