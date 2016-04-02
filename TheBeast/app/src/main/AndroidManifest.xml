@@ -33,16 +33,17 @@
         <activity
             android:name=".LoginToFacebook"
             android:label="@string/title_activity_login_to_facebook"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity
-            android:name=".HomeActivity"
-            android:label="@string/title_activity_home">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".HomeActivity"
+            android:label="@string/title_activity_home">
+
         </activity>
         <!--
              ATTENTION: This was auto-generated to add Google Play services to your project for

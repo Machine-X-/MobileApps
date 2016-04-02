@@ -13,6 +13,8 @@ public class Utility {
         VOLLEYBALL
     }
 
+    public static String prefsFile = "prefsFile";
+
     public static String getTime(int hour, int minute) {
         String period = " AM";
         String minString = String.valueOf(minute);

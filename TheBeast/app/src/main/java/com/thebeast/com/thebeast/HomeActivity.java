@@ -127,8 +127,9 @@ public class HomeActivity extends AppCompatActivity {
                 currentNavScreen = NavigationScreen.FIRST;
                 break;
             case R.id.nav_second_fragment:
-                fragmentClass = TabFragment.class;
-                startActivity(new Intent(this, LoginToFacebook.class));
+                fragmentClass = UserProfileActivity.class;
+                //startActivity(new Intent(this, LoginToFacebook.class));
+                currentNavScreen = NavigationScreen.SECOND;
                 break;
             case R.id.nav_third_fragment:
                 fragmentClass = TabFragment.class;

@@ -5,7 +5,7 @@
     <string name="go_to_fb_login">Login with Facebook!</string>
     <string name="go_to_maps_activity">View Map to Find a Game!</string>
     <string name="title_activity_login_to_facebook">LoginToFacebook</string>
-    <string name="user_name">Please sign in for fun!</string>
+    <string name="user_name">Welcome, </string>
     <string name="sign_in_with_facebook_header">Sign in with Facebook!</string>
     <string name="main_activity_header">Welcome to the Beast!</string>
 
