@@ -19,9 +19,12 @@ import android.view.View;
 
 public class HomeActivity extends AppCompatActivity {
 
+    private NavigationView mNavigationView;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
+    private FloatingActionButton fab;
     static final String FRAGMENT_CLASS = "fragmentClass";
+    private Bundle savedState;
 
     public enum NavigationScreen {
         FIRST,
@@ -44,39 +47,14 @@ public class HomeActivity extends AppCompatActivity {
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
-        NavigationView navigationView = (NavigationView)findViewById(R.id.nvView);
-        setUpNavigationView(navigationView);
-        navigationView.setCheckedItem(R.id.nav_first_fragment);
+        mNavigationView = (NavigationView)findViewById(R.id.nvView);
+        setUpNavigationView(mNavigationView);
+        mNavigationView.setCheckedItem(R.id.nav_first_fragment);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-        if (savedInstanceState == null) {
-            currentNavScreen = NavigationScreen.FIRST;
-            fragmentTransaction.add(R.id.content_frame, new TabFragment()).addToBackStack(null);
-        }
-        else {
-            currentNavScreen = (NavigationScreen)savedInstanceState.get(FRAGMENT_CLASS);
-            assert currentNavScreen != null;
-            switch (currentNavScreen) {
-                case FIRST:
-                    fragmentTransaction.replace(R.id.content_frame, new TabFragment());
-                    break;
-                case SECOND:
-                    fragmentTransaction.replace(R.id.content_frame, new TabFragment());
-                    break;
-                case THIRD:
-                    fragmentTransaction.replace(R.id.content_frame, new TestFragment3());
-                    break;
-                default:
-                    fragmentTransaction.replace(R.id.content_frame, new TabFragment());
-            }
-        }
-        fragmentTransaction.commit();
-
+        savedState = savedInstanceState;
 
         final Intent intent = new Intent(this, CreateGameActivity.class);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -163,6 +141,7 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        mNavigationView.setCheckedItem(R.id.nav_first_fragment);
         FragmentManager fragmentManager = getSupportFragmentManager();
         if (fragmentManager.getBackStackEntryCount() > 0) {
             fragmentManager.popBackStackImmediate();
@@ -196,6 +175,32 @@ public class HomeActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         Log.d("SHTUFF", "LIFECYCLE UPDATE :: App has reached HomeActivity.onStart();");
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        if (savedState == null) {
+            currentNavScreen = NavigationScreen.FIRST;
+            fragmentTransaction.add(R.id.content_frame, new TabFragment()).addToBackStack(null);
+        }
+        else {
+            currentNavScreen = (NavigationScreen)savedState.get(FRAGMENT_CLASS);
+            assert currentNavScreen != null;
+            switch (currentNavScreen) {
+                case FIRST:
+                    fragmentTransaction.replace(R.id.content_frame, new TabFragment());
+                    break;
+                case SECOND:
+                    fragmentTransaction.replace(R.id.content_frame, new UserProfileActivity());
+                    break;
+                case THIRD:
+                    startActivity(new Intent(this, MapsActivity.class));
+                    break;
+                default:
+                    fragmentTransaction.replace(R.id.content_frame, new TabFragment());
+            }
+        }
+        fragmentTransaction.commit();
     }
 
     @Override
