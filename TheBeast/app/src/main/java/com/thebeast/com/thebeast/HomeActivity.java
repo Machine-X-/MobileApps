@@ -106,7 +106,6 @@ public class HomeActivity extends AppCompatActivity {
                 break;
             case R.id.nav_second_fragment:
                 fragmentClass = UserProfileActivity.class;
-                //startActivity(new Intent(this, LoginToFacebook.class));
                 currentNavScreen = NavigationScreen.SECOND;
                 break;
             case R.id.nav_third_fragment:
@@ -177,30 +176,36 @@ public class HomeActivity extends AppCompatActivity {
         Log.d("SHTUFF", "LIFECYCLE UPDATE :: App has reached HomeActivity.onStart();");
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        Fragment fragment = fragmentManager.findFragmentById(R.id.content_frame);
 
-        if (savedState == null) {
-            currentNavScreen = NavigationScreen.FIRST;
-            fragmentTransaction.add(R.id.content_frame, new TabFragment()).addToBackStack(null);
-        }
-        else {
-            currentNavScreen = (NavigationScreen)savedState.get(FRAGMENT_CLASS);
-            assert currentNavScreen != null;
-            switch (currentNavScreen) {
-                case FIRST:
-                    fragmentTransaction.replace(R.id.content_frame, new TabFragment());
-                    break;
-                case SECOND:
-                    fragmentTransaction.replace(R.id.content_frame, new UserProfileActivity());
-                    break;
-                case THIRD:
-                    startActivity(new Intent(this, MapsActivity.class));
-                    break;
-                default:
-                    fragmentTransaction.replace(R.id.content_frame, new TabFragment());
+        // this check preserves the inner fragment state
+        if (fragment == null) {
+
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+            if (savedState == null) {
+                currentNavScreen = NavigationScreen.FIRST;
+                fragmentTransaction.add(R.id.content_frame, new TabFragment()).addToBackStack(null);
             }
+            else {
+                currentNavScreen = (NavigationScreen)savedState.get(FRAGMENT_CLASS);
+                assert currentNavScreen != null;
+                switch (currentNavScreen) {
+                    case FIRST:
+                        fragmentTransaction.replace(R.id.content_frame, new TabFragment());
+                        break;
+                    case SECOND:
+                        fragmentTransaction.replace(R.id.content_frame, new UserProfileActivity());
+                        break;
+                    case THIRD:
+                        startActivity(new Intent(this, MapsActivity.class));
+                        break;
+                    default:
+                        fragmentTransaction.replace(R.id.content_frame, new TabFragment());
+                }
+            }
+            fragmentTransaction.commit();
         }
-        fragmentTransaction.commit();
     }
 
     @Override

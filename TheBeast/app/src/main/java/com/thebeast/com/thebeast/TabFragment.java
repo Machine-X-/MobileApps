@@ -20,6 +20,7 @@ public class TabFragment extends Fragment {
 
     public TabLayout mTabLayout;
     public ViewPager mViewPager;
+    private PageAdapter mPageAdapter;
     static final int TAB_NUM = 5;
     static final String[] TAB_NAMES = {"ALL SPORTS", "BASKETBALL", "FOOTBALL", "SOCCER", "VOLLEYBALL"};
 
@@ -33,28 +34,29 @@ public class TabFragment extends Fragment {
 
         mTabLayout = (TabLayout)view.findViewById(R.id.tabLayout);
         mTabLayout.setupWithViewPager(mViewPager);
+
         return view;
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        PageAdapter adapter = new PageAdapter(getChildFragmentManager());
+        mPageAdapter = new PageAdapter(getChildFragmentManager());
 
         Fragment allFragment = GameListFragment.newInstance(Utility.ListFilter.ALL);
-        adapter.addFragment(allFragment);
+        mPageAdapter.addFragment(allFragment);
 
         Fragment basketballFragment = GameListFragment.newInstance(Utility.ListFilter.BASKETBALL);
-        adapter.addFragment(basketballFragment);
+        mPageAdapter.addFragment(basketballFragment);
 
         Fragment footballFragment = GameListFragment.newInstance(Utility.ListFilter.FOOTBALL);
-        adapter.addFragment(footballFragment);
+        mPageAdapter.addFragment(footballFragment);
 
         Fragment soccerFragment = GameListFragment.newInstance(Utility.ListFilter.SOCCER);
-        adapter.addFragment(soccerFragment);
+        mPageAdapter.addFragment(soccerFragment);
 
         Fragment volleyballFragment = GameListFragment.newInstance(Utility.ListFilter.VOLLEYBALL);
-        adapter.addFragment(volleyballFragment);
+        mPageAdapter.addFragment(volleyballFragment);
 
-        viewPager.setAdapter(adapter);
+        viewPager.setAdapter(mPageAdapter);
     }
 
     public class PageAdapter extends FragmentPagerAdapter {
