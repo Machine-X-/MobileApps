@@ -1,10 +1,13 @@
 package com.thebeast.com.thebeast;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 
 /**
  * Created by loganpatino on 3/25/16.
  */
+@JsonIgnoreProperties({"gameId"})
 public class Game implements Serializable {
 
     private String additionalInfo;

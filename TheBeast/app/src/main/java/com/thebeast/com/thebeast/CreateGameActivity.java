@@ -78,6 +78,7 @@ public class CreateGameActivity extends AppCompatActivity {
         int hour = c.get(Calendar.HOUR_OF_DAY);
         int minute = c.get(Calendar.MINUTE);
         String defaultTime = Utility.getTime(hour, minute);
+        timeInMins = Utility.getMins(hour, minute);
         timeText.setText(defaultTime);
 
         mGeocoder = new Geocoder(this);
