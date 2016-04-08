@@ -12,34 +12,94 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="55dp">
+        >
 
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/user_name"
-            android:id="@+id/username"
-            android:layout_weight=".2"
-            android:gravity="center"/>
+            >
 
-        <TextView
+            <com.facebook.login.widget.ProfilePictureView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:id="@+id/user_profile_pic"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp">
+
+            </com.facebook.login.widget.ProfilePictureView>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@+id/user_profile_pic"
+                android:layout_alignBottom="@+id/user_profile_pic">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/user_name"
+                    android:id="@+id/username"
+                    android:layout_alignParentEnd="true"
+                    android:layout_toEndOf="@+id/user_profile_pic"
+                    android:layout_alignBottom="@+id/user_profile_pic"
+                    android:layout_alignTop="@+id/user_profile_pic"
+                    style="@style/Title"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight=".9"
+                    android:gravity="center"/>
+
+                <com.facebook.login.widget.LoginButton
+                    android:id="@+id/login_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight=".1"
+                    />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Wins: "
-            android:id="@+id/tv_player_wins"
-            android:layout_weight=".2"
-            android:gravity="center"/>
+            android:paddingTop="30dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Losses: "
-            android:id="@+id/tv_player_losses"
-            android:layout_weight=".2"
-            android:gravity="center"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Wins: "
+                android:id="@+id/tv_player_wins"
+                android:layout_weight=".5"
+                android:gravity="center"
+                style="@style/PrimaryText"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Losses: "
+                android:id="@+id/tv_player_losses"
+                android:layout_weight=".5"
+                android:gravity="center"
+                style="@style/PrimaryText"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@+id/tv_player_wins"/>
+        </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
@@ -47,15 +107,19 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Points Scored: "
             android:id="@+id/tv_player_points_scored"
-            android:layout_weight=".2"
-            android:gravity="center"/>
+            android:gravity="center"
+            style="@style/PrimaryText"/>
 
-        <com.facebook.login.widget.LoginButton
-            android:id="@+id/login_button"
-            android:layout_width="wrap_content"
+        <android.support.v4.view.ViewPager
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight=".2"/>
+            android:id="@+id/sport_specific_stats"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_above="@+id/login_button">
+
+        </android.support.v4.view.ViewPager>
 
     </LinearLayout>
 

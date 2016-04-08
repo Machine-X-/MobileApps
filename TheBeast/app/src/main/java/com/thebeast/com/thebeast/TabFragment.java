@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,19 +40,19 @@ public class TabFragment extends Fragment {
     private void setupViewPager(ViewPager viewPager) {
         mPageAdapter = new PageAdapter(getChildFragmentManager());
 
-        Fragment allFragment = GameListFragment.newInstance(Utility.ListFilter.ALL);
+        Fragment allFragment = GameListFragment.newInstance(Utility.SportFilter.ALL);
         mPageAdapter.addFragment(allFragment);
 
-        Fragment basketballFragment = GameListFragment.newInstance(Utility.ListFilter.BASKETBALL);
+        Fragment basketballFragment = GameListFragment.newInstance(Utility.SportFilter.BASKETBALL);
         mPageAdapter.addFragment(basketballFragment);
 
-        Fragment footballFragment = GameListFragment.newInstance(Utility.ListFilter.FOOTBALL);
+        Fragment footballFragment = GameListFragment.newInstance(Utility.SportFilter.FOOTBALL);
         mPageAdapter.addFragment(footballFragment);
 
-        Fragment soccerFragment = GameListFragment.newInstance(Utility.ListFilter.SOCCER);
+        Fragment soccerFragment = GameListFragment.newInstance(Utility.SportFilter.SOCCER);
         mPageAdapter.addFragment(soccerFragment);
 
-        Fragment volleyballFragment = GameListFragment.newInstance(Utility.ListFilter.VOLLEYBALL);
+        Fragment volleyballFragment = GameListFragment.newInstance(Utility.SportFilter.VOLLEYBALL);
         mPageAdapter.addFragment(volleyballFragment);
 
         viewPager.setAdapter(mPageAdapter);

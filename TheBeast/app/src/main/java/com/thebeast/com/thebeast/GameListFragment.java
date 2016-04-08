@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +20,9 @@ public class GameListFragment extends Fragment {
     protected RecyclerView.LayoutManager mLayoutManager;
     FirebaseRecyclerAdapter<Game, RecyclerViewHolder> mAdapter;
     Firebase mRef;
-    Utility.ListFilter filter;
+    Utility.SportFilter filter;
 
-    public static GameListFragment newInstance(Utility.ListFilter filter) {
+    public static GameListFragment newInstance(Utility.SportFilter filter) {
         GameListFragment fragment = new GameListFragment();
 
         Bundle args = new Bundle();
@@ -37,7 +36,7 @@ public class GameListFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle bundle = getArguments();
-        filter = (Utility.ListFilter)bundle.getSerializable("filter");
+        filter = (Utility.SportFilter)bundle.getSerializable("filter");
     }
 
     @Nullable

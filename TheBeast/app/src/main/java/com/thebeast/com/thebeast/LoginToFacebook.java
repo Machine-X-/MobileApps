@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.net.Uri;
 import android.os.Build;
 import android.provider.ContactsContract;
 import android.support.v4.app.FragmentActivity;
@@ -165,6 +166,7 @@ public class LoginToFacebook extends AppCompatActivity {
     private void saveNewProfileName(Profile profile) {
         SharedPreferences prefs = getSharedPreferences(Utility.prefsFile, MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("userId", profile.getId());
         editor.putString("userName", profile.getName());
         editor.apply();
     }

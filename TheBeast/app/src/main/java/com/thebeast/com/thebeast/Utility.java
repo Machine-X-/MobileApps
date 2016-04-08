@@ -5,7 +5,7 @@ package com.thebeast.com.thebeast;
  */
 public class Utility {
 
-    public enum ListFilter {
+    public enum SportFilter {
         ALL,
         BASKETBALL,
         FOOTBALL,

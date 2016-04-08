@@ -103,10 +103,12 @@ public class HomeActivity extends AppCompatActivity {
             case R.id.nav_first_fragment:
                 fragmentClass = TabFragment.class;
                 currentNavScreen = NavigationScreen.FIRST;
+                fab.setVisibility(View.VISIBLE);
                 break;
             case R.id.nav_second_fragment:
                 fragmentClass = UserProfileActivity.class;
                 currentNavScreen = NavigationScreen.SECOND;
+                fab.setVisibility(View.INVISIBLE);
                 break;
             case R.id.nav_third_fragment:
                 fragmentClass = TabFragment.class;
