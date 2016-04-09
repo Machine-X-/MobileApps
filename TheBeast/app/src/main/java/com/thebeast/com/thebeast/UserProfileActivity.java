@@ -1,15 +1,9 @@
 package com.thebeast.com.thebeast;
 
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.Image;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -18,7 +12,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.login.widget.ProfilePictureView;
@@ -27,19 +20,19 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
 import com.firebase.client.ValueEventListener;
+import com.matthewtamlin.sliding_intro_screen_library.DotIndicator;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserProfileActivity extends Fragment {
 
     private TextView tvUsername;
-    private TextView tvWins;
-    private TextView tvLosses;
-    private TextView tvPointsScored;
+    private TextView totalGamesPlayed;
+    private TextView overallRecord;
+    //private TextView tvPointsScored;
     private ProfilePictureView profilePic;
+    private DotIndicator dotIndicator;
     private ViewPager mViewPager;
     private PageAdapter mPageAdapter;
     private final int STAT_PAGE_NUM = 4;
@@ -57,10 +50,11 @@ public class UserProfileActivity extends Fragment {
 		View view = inflater.inflate(R.layout.activity_user_profile_layout, container, false);
 
         tvUsername = (TextView) view.findViewById(R.id.username);
-        tvWins = (TextView) view.findViewById(R.id.tv_player_wins);
-        tvLosses = (TextView) view.findViewById(R.id.tv_player_losses);
-        tvPointsScored = (TextView) view.findViewById(R.id.tv_player_points_scored);
+        totalGamesPlayed = (TextView) view.findViewById(R.id.total_games_played);
+        overallRecord = (TextView) view.findViewById(R.id.overall_record);
+        //tvPointsScored = (TextView) view.findViewById(R.id.tv_player_points_scored);
         profilePic = (ProfilePictureView)view.findViewById(R.id.user_profile_pic);
+        dotIndicator = (DotIndicator)view.findViewById(R.id.dot_indicator);
 
         SharedPreferences prefs = getActivity().getSharedPreferences(Utility.prefsFile, Context.MODE_PRIVATE);
         final String userName = prefs.getString("userName", null);
@@ -72,6 +66,23 @@ public class UserProfileActivity extends Fragment {
         mViewPager = (ViewPager)view.findViewById(R.id.sport_specific_stats);
         setupViewPager();
 
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                dotIndicator.setSelectedItem(position, true);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
         mRef = new Firebase("https://sizzling-torch-801.firebaseio.com/profiles");
         Query queryRef = mRef.orderByChild("name").equalTo(userName);
 
@@ -81,9 +92,9 @@ public class UserProfileActivity extends Fragment {
 
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     com.thebeast.com.thebeast.Profile dbProfile = postSnapshot.getValue(com.thebeast.com.thebeast.Profile.class);
-                    tvWins.append(String.valueOf(dbProfile.getWins()));
-                    tvLosses.append(String.valueOf(dbProfile.getLosses()));
-                    tvPointsScored.append(String.valueOf(dbProfile.getPointsScored()));
+                    totalGamesPlayed.setText(String.valueOf(dbProfile.getWins()));
+                    overallRecord.setText(String.valueOf(dbProfile.getLosses()));
+                    //tvPointsScored.append(String.valueOf(dbProfile.getPointsScored()));
                 }
 
             }

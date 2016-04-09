@@ -4,6 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.thebeast.com.thebeast.GameDetailActivity">
@@ -77,8 +78,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Wins: "
+                android:text="@string/total_games_played"
                 android:id="@+id/tv_player_wins"
                 android:layout_weight=".5"
                 android:gravity="center"
@@ -90,8 +90,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Losses: "
+                android:text="@string/overall_record"
                 android:id="@+id/tv_player_losses"
                 android:layout_weight=".5"
                 android:gravity="center"
@@ -101,25 +100,69 @@
                 android:layout_toEndOf="@+id/tv_player_wins"/>
         </LinearLayout>
 
-        <TextView
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/total_games_played"
+                android:layout_weight=".5"
+                android:gravity="center"
+                style="@style/Title"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/overall_record"
+                android:layout_weight=".5"
+                android:gravity="center"
+                style="@style/Title"/>
+        </LinearLayout>
+
+        <!--<TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Points Scored: "
             android:id="@+id/tv_player_points_scored"
             android:gravity="center"
-            style="@style/PrimaryText"/>
+            style="@style/PrimaryText"/>-->
 
-        <android.support.v4.view.ViewPager
+        <View style="@style/Divider"/>
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/sport_specific_stats"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_above="@+id/login_button">
+            android:layout_height="match_parent"
+            android:paddingTop="10dp">
 
-        </android.support.v4.view.ViewPager>
+            <android.support.v4.view.ViewPager
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/sport_specific_stats"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true">
+
+            </android.support.v4.view.ViewPager>
+
+            <com.matthewtamlin.sliding_intro_screen_library.DotIndicator
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:numberOfDots="4"
+                app:selectedDotColor="@color/colorAccent"
+                app:unselectedDotColor="@color/colorAccent"
+                android:id="@+id/dot_indicator"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="20dp"/>
+        </RelativeLayout>
 
     </LinearLayout>
 

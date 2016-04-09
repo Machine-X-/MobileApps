@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -14,7 +15,10 @@ import android.widget.TextView;
 public class SportStatFragment extends Fragment {
 
     private Utility.SportFilter filter;
-    private TextView sportText;
+    private ImageView sportIcon;
+    private TextView gamesPlayed;
+    private TextView specificStat1;
+    private TextView specificStat2;
 
     public static SportStatFragment newInstance(Utility.SportFilter filter) {
         SportStatFragment fragment = new SportStatFragment();
@@ -37,7 +41,10 @@ public class SportStatFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.sport_stat_layout, container, false);
-        sportText = (TextView)view.findViewById(R.id.sport_text);
+        sportIcon = (ImageView)view.findViewById(R.id.sportIcon);
+        gamesPlayed = (TextView)view.findViewById(R.id.gamesPlayed);
+        specificStat1 = (TextView)view.findViewById(R.id.specific_stat_1);
+        specificStat2 = (TextView)view.findViewById(R.id.specific_stat_2);
         return view;
     }
 
@@ -47,19 +54,25 @@ public class SportStatFragment extends Fragment {
 
         switch (filter) {
             case BASKETBALL:
-                sportText.setText("BASKETBALL");
+                sportIcon.setImageResource(R.drawable.basketball);
+                specificStat1.setText(getString(R.string.points));
+                specificStat2.setText(getString(R.string.assists));
                 break;
             case FOOTBALL:
-                sportText.setText("FOOTBALL");
+                sportIcon.setImageResource(R.drawable.football);
+                specificStat1.setText(getString(R.string.touchdowns));
+                specificStat2.setText(getString(R.string.interceptions));
                 break;
             case SOCCER:
-                sportText.setText("SOCCER");
+                sportIcon.setImageResource(R.drawable.soccer);
+                specificStat1.setText(getString(R.string.goals));
+                specificStat2.setText(getString(R.string.assists));
                 break;
             case VOLLEYBALL:
-                sportText.setText("VOLLEYBALL");
+                sportIcon.setImageResource(R.drawable.volleyball);
+                specificStat1.setText(getString(R.string.points));
+                specificStat2.setText(getString(R.string.aces));
                 break;
-            default:
-                sportText.setText("BASKETBALL");
         }
     }
 }

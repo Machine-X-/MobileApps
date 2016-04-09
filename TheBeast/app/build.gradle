@@ -38,4 +38,5 @@ dependencies {
     compile 'com.android.support:support-v4:23.2.1'
     compile 'com.firebase:firebase-client-android:2.3.1'
     compile 'com.firebaseui:firebase-ui:0.3.1'
+    compile 'com.matthew-tamlin:sliding-intro-screen:2.1.0'
 }

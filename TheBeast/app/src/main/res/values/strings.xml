@@ -65,4 +65,15 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_view_game">ViewGameActivity</string>
 
+    <string name="total_games_played">Total games played: </string>
+    <string name="overall_record">Overall record: </string>
+    <string name="games_played">Games played: </string>
+    <string name="record">Record: </string>
+    <string name="goals">Goals: </string>
+    <string name="assists">Assists: </string>
+    <string name="points">Points: </string>
+    <string name="touchdowns">Touchdowns: </string>
+    <string name="interceptions">Interceptions: </string>
+    <string name="aces">Aces: </string>
+
 </resources>
