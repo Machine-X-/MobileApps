@@ -25,6 +25,7 @@ public class HomeActivity extends AppCompatActivity {
     private FloatingActionButton fab;
     static final String FRAGMENT_CLASS = "fragmentClass";
     private Bundle savedState;
+    private Toolbar mToolbar;
 
     public enum NavigationScreen {
         FIRST,
@@ -38,8 +39,8 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer_layout);
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        mToolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -104,11 +105,13 @@ public class HomeActivity extends AppCompatActivity {
                 fragmentClass = TabFragment.class;
                 currentNavScreen = NavigationScreen.FIRST;
                 fab.setVisibility(View.VISIBLE);
+                mToolbar.setTitle(R.string.title_activity_home);
                 break;
             case R.id.nav_second_fragment:
                 fragmentClass = UserProfileActivity.class;
                 currentNavScreen = NavigationScreen.SECOND;
                 fab.setVisibility(View.INVISIBLE);
+                mToolbar.setTitle(R.string.title_activity_login_to_facebook);
                 break;
             case R.id.nav_third_fragment:
                 fragmentClass = TabFragment.class;

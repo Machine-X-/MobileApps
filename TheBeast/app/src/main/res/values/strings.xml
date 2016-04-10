@@ -4,7 +4,7 @@
     <string name="facebook_app_id">544407449082473</string>
     <string name="go_to_fb_login">Login with Facebook!</string>
     <string name="go_to_maps_activity">View Map to Find a Game!</string>
-    <string name="title_activity_login_to_facebook">LoginToFacebook</string>
+    <string name="title_activity_login_to_facebook">Profile</string>
     <string name="user_name">Welcome, </string>
     <string name="sign_in_with_facebook_header">Sign in with Facebook!</string>
     <string name="main_activity_header">Welcome to the Beast!</string>
@@ -22,7 +22,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_example">Example action</string>
-    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_home">Current Games</string>
     <string name="title_activity_tab_fragment">TabFragment</string>
 
     <string name="title_activity_maps">Map</string>

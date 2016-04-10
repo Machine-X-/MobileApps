@@ -45,7 +45,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="@string/user_name"
                     android:id="@+id/username"
                     android:layout_alignParentEnd="true"
                     android:layout_toEndOf="@+id/user_profile_pic"
@@ -110,7 +109,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Text"
                 android:id="@+id/total_games_played"
                 android:layout_weight=".5"
                 android:gravity="center"
@@ -119,7 +117,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Text"
                 android:id="@+id/overall_record"
                 android:layout_weight=".5"
                 android:gravity="center"
