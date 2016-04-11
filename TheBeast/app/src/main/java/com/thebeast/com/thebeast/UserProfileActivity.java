@@ -98,10 +98,15 @@ public class UserProfileActivity extends Fragment {
             public void onDataChange(DataSnapshot snapshot) {
 
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                    com.thebeast.com.thebeast.Profile dbProfile = postSnapshot.getValue(com.thebeast.com.thebeast.Profile.class);
-                    totalGamesPlayed.setText(String.valueOf(dbProfile.getWins()));
-                    overallRecord.setText(String.valueOf(dbProfile.getLosses()));
-                    //tvPointsScored.append(String.valueOf(dbProfile.getPointsScored()));
+                    Profile dbProfile = postSnapshot.getValue(Profile.class);
+
+                    int wins = dbProfile.getWins();
+                    int losses = dbProfile.getLosses();
+                    int totalGames = wins+losses;
+                    String recordText = wins + "-" + losses;
+
+                    totalGamesPlayed.setText(String.valueOf(totalGames));
+                    overallRecord.setText(recordText);
                 }
 
             }

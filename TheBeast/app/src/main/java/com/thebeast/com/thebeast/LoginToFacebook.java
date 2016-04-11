@@ -31,6 +31,8 @@ import com.firebase.client.ValueEventListener;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginToFacebook extends AppCompatActivity {
 
@@ -185,8 +187,9 @@ public class LoginToFacebook extends AppCompatActivity {
                         }
                     }
                     if (!found) {
-                        com.thebeast.com.thebeast.Profile newPlayer = new com.thebeast.com.thebeast.Profile(profile.getName(), 0, 0, 0);
-                        ref.push().setValue(newPlayer);
+                        com.thebeast.com.thebeast.Profile newPlayer = new com.thebeast.com.thebeast.Profile(profile.getName());
+                        Firebase profileRef = ref.push();
+                        profileRef.setValue(newPlayer);
                     }
                 }
 

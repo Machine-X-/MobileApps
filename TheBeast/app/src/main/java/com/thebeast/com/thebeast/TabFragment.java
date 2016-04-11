@@ -1,8 +1,10 @@
 package com.thebeast.com.thebeast;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -20,6 +22,7 @@ public class TabFragment extends Fragment {
     public TabLayout mTabLayout;
     public ViewPager mViewPager;
     private PageAdapter mPageAdapter;
+    private FloatingActionButton fab;
     static final int TAB_NUM = 5;
     static final String[] TAB_NAMES = {"ALL SPORTS", "BASKETBALL", "FOOTBALL", "SOCCER", "VOLLEYBALL"};
 
@@ -33,6 +36,15 @@ public class TabFragment extends Fragment {
 
         mTabLayout = (TabLayout)view.findViewById(R.id.tabLayout);
         mTabLayout.setupWithViewPager(mViewPager);
+
+        final Intent intent = new Intent(getActivity(), CreateGameActivity.class);
+        fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(intent);
+            }
+        });
 
         return view;
     }
