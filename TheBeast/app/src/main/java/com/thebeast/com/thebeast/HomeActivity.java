@@ -53,15 +53,6 @@ public class HomeActivity extends AppCompatActivity {
         mNavigationView.setCheckedItem(R.id.nav_first_fragment);
 
         savedState = savedInstanceState;
-
-        final Intent intent = new Intent(this, CreateGameActivity.class);
-        fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(intent);
-            }
-        });
     }
 
     @Override
@@ -104,13 +95,11 @@ public class HomeActivity extends AppCompatActivity {
             case R.id.nav_first_fragment:
                 fragmentClass = TabFragment.class;
                 currentNavScreen = NavigationScreen.FIRST;
-                fab.setVisibility(View.VISIBLE);
                 mToolbar.setTitle(R.string.title_activity_home);
                 break;
             case R.id.nav_second_fragment:
                 fragmentClass = UserProfileActivity.class;
                 currentNavScreen = NavigationScreen.SECOND;
-                fab.setVisibility(View.INVISIBLE);
                 mToolbar.setTitle(R.string.title_activity_login_to_facebook);
                 break;
             case R.id.nav_third_fragment:

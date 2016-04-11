@@ -3,6 +3,7 @@ package com.thebeast.com.thebeast;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,6 +22,7 @@ public class GameListFragment extends Fragment {
     FirebaseRecyclerAdapter<Game, RecyclerViewHolder> mAdapter;
     Firebase mRef;
     Utility.SportFilter filter;
+    private FloatingActionButton fab;
 
     public static GameListFragment newInstance(Utility.SportFilter filter) {
         GameListFragment fragment = new GameListFragment();
@@ -44,6 +46,16 @@ public class GameListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.list_layout, container, false);
         mRecyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
+
+        final Intent intent = new Intent(getActivity(), CreateGameActivity.class);
+        fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 
