@@ -1,6 +1,7 @@
 package com.thebeast.com.thebeast;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -50,7 +51,6 @@ public class HomeActivity extends AppCompatActivity {
 
         mNavigationView = (NavigationView)findViewById(R.id.nvView);
         setUpNavigationView(mNavigationView);
-        mNavigationView.setCheckedItem(R.id.nav_first_fragment);
 
         savedState = savedInstanceState;
     }
@@ -168,11 +168,12 @@ public class HomeActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         Log.d("SHTUFF", "LIFECYCLE UPDATE :: App has reached HomeActivity.onStart();");
-
+        mNavigationView.setCheckedItem(R.id.nav_first_fragment);
         FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment fragment = fragmentManager.findFragmentById(R.id.content_frame);
 
         // this check preserves the inner fragment state
+
         if (fragment == null) {
 
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
