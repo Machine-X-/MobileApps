@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -28,6 +30,7 @@ import java.util.List;
 
 public class UserProfileActivity extends Fragment {
 
+    private CoordinatorLayout mCoordinatorLayout;
     private TextView tvUsername;
     private TextView totalGamesPlayed;
     private TextView overallRecord;
@@ -39,10 +42,16 @@ public class UserProfileActivity extends Fragment {
     private final int STAT_PAGE_NUM = 4;
     private Firebase mRef;
 
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onStart() {
+        super.onStart();
+
+        if (!Utility.isNetworkAvailable(getContext())){
+            Snackbar snackbar = Snackbar.make(mCoordinatorLayout,
+                    "No connection",
+                    Snackbar.LENGTH_SHORT);
+            snackbar.show();
+        }
     }
 
     @Override
@@ -55,6 +64,8 @@ public class UserProfileActivity extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     	// Inflate the layout for this fragment
 		View view = inflater.inflate(R.layout.activity_user_profile_layout, container, false);
+
+        mCoordinatorLayout = (CoordinatorLayout)view.findViewById(R.id.coordinator);
 
         tvUsername = (TextView) view.findViewById(R.id.username);
         totalGamesPlayed = (TextView) view.findViewById(R.id.total_games_played);

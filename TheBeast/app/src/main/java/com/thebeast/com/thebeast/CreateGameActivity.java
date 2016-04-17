@@ -88,7 +88,7 @@ public class CreateGameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (isFormFilled()) {
+                if (isFormFilled() && Utility.isNetworkAvailable(getApplicationContext())) {
                     String sport = mSportSpinner.getSelectedItem().toString();
                     String location = mLocation.getText().toString();
                     String additionalInfo = mInfoText.getText().toString();
@@ -117,6 +117,14 @@ public class CreateGameActivity extends AppCompatActivity {
                         Log.e("SHTUFF", "ERROR OCCURRED WHILE SEARCHING FOR ADDRESS :: ERROR MESSAGE = " + e.getMessage());
                     }
                 }
+                // no internet
+                else if (!Utility.isNetworkAvailable(getApplicationContext())){
+                    Snackbar snackbar = Snackbar.make(mRoot,
+                            "No connection",
+                            Snackbar.LENGTH_SHORT);
+                    snackbar.show();
+                }
+                // not all fields filled out
                 else {
                     Snackbar snackbar = Snackbar.make(mRoot,
                             "Please fill out all required fields",

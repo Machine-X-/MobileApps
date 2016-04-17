@@ -4,7 +4,9 @@ package com.thebeast.com.thebeast;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -19,6 +21,7 @@ import java.util.List;
 
 public class TabFragment extends Fragment {
 
+    private CoordinatorLayout mCoordinatorLayout;
     public TabLayout mTabLayout;
     public ViewPager mViewPager;
     private PageAdapter mPageAdapter;
@@ -26,10 +29,24 @@ public class TabFragment extends Fragment {
     static final int TAB_NUM = 5;
     static final String[] TAB_NAMES = {"ALL SPORTS", "BASKETBALL", "FOOTBALL", "SOCCER", "VOLLEYBALL"};
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        if (!Utility.isNetworkAvailable(getContext())){
+            Snackbar snackbar = Snackbar.make(mCoordinatorLayout,
+                    "No connection",
+                    Snackbar.LENGTH_SHORT);
+            snackbar.show();
+        }
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_layout, container, false);
+
+        mCoordinatorLayout = (CoordinatorLayout)view.findViewById(R.id.coordinator);
 
         mViewPager = (ViewPager)view.findViewById(R.id.viewPager);
         setupViewPager(mViewPager);

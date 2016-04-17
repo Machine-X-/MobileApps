@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -193,7 +194,15 @@ public class HomeActivity extends AppCompatActivity {
                         fragmentTransaction.replace(R.id.content_frame, new UserProfileActivity());
                         break;
                     case THIRD:
-                        startActivity(new Intent(this, MapsActivity.class));
+                        if (!Utility.isNetworkAvailable(getApplicationContext())) {
+                            Snackbar snackbar = Snackbar.make(getCurrentFocus(),
+                                    "No connection",
+                                    Snackbar.LENGTH_SHORT);
+                            snackbar.show();
+                        }
+                        else {
+                            startActivity(new Intent(this, MapsActivity.class));
+                        }
                         break;
                     default:
                         fragmentTransaction.replace(R.id.content_frame, new TabFragment());
